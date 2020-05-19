@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useRef } from "react";
+import { useStoreContext } from "../../utils/GlobalState";
 import {
   Form,
   Button,
@@ -8,31 +9,49 @@ import {
   Col
 } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  FORM_SUBMIT
+} from "../../utils/actions"
 
 function SearchInputForm() {
 
-  const handleSubmit = () => {
+  const [state, dispatch] = useStoreContext();
 
+  const [formObject, setFormObject] = useState({})
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let { zip, range } = formObject
+    dispatch({
+      type: FORM_SUBMIT,
+      zip: zip,
+      range: range
+    });
+  }
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value });
   }
 
   return (
     <div>
       <Form>
-        <Form.Group controlId="formBasicEmail">
+        <Form.Group controlId="zipForm">
           <Form.Label>Please enter your zip code</Form.Label>
-          <Form.Control placeholder="zip code" />
+          <Form.Control placeholder="zip code" name="zip" onChange={handleInputChange} />
           <Form.Text className="text-muted">
             We save no data on our users
     </Form.Text>
         </Form.Group>
 
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="yearForm">
           <Form.Label>How far would you like to search</Form.Label>
           <Form.Text className="text-muted">
             The farther back the search, the easier it is to determine long term trends
     </Form.Text>
 
-          <Form.Control as="select" value="Choose...">
+          <Form.Control as="select" name="range" onChange={handleInputChange} >
             <option>Choose...</option>
             <option>5 years</option>
             <option>10 years</option>
@@ -51,7 +70,7 @@ function SearchInputForm() {
             <option>75 years</option>
           </Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit" onclick={handleSubmit}>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
           Search
   </Button>
       </Form>

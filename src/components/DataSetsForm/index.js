@@ -42,7 +42,6 @@ function DataSetsForm() {
       type: SETS_CHANGE,
       sets: sets
     });
-    console.log(sets);
   }
 
   return (

@@ -11,45 +11,38 @@ import {
 
 export const StoreContext = createContext();
 const initialState = {
-  zip: "",
+  query: false,
   dataSets: {
     temp: false,
     water: false,
     ghosts: false,
     riffs: false,
   },
+  zip: "",
   range: ""
 };
 
 const reducer = (state, action) => {
+  let { dataSets } = state;
 
   switch (action.type) {
 
     case SETS_CHANGE:
       let { sets } = action;
-
       return {
         ...state,
         dataSets: { ...sets },
       }
 
-    // case GENERATE:
-    // let { length, sets } = action;
-
-    //   return {
-    //     ...state,
-    //     generation: true,
-    //     length: length,
-    //     setsSelected: { ...sets },
-    //   }
-
-    // case NEW_PASSWORD:
-    //   let { password } = action;
-    //   return {
-    //     ...state,
-    //     generation: false,
-    //     password: password,
-    //   }
+    case FORM_SUBMIT:
+      console.log(action)
+      let { zip, range } = action;
+      return {
+        ...state,
+        query: true,
+        zip: zip,
+        range: range
+      }
 
     default:
       return state;
