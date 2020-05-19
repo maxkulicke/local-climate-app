@@ -1,21 +1,40 @@
 import React, { createContext, useReducer, useContext } from "react";
 
 import {
-  GENERATE,
-  NEW_PASSWORD
+  FORM_SUBMIT,
+  GET_FIPS,
+  CALL_NOAA,
+  PROCESS_DATA,
+  SHOW_GRAPHS,
+  SETS_CHANGE
 } from "./actions";
 
 export const StoreContext = createContext();
 const initialState = {
-  
+  zip: "",
+  dataSets: {
+    temp: false,
+    water: false,
+    ghosts: false,
+    riffs: false,
+  },
+  range: ""
 };
 
 const reducer = (state, action) => {
 
   switch (action.type) {
-    
+
+    case SETS_CHANGE:
+      let { sets } = action;
+
+      return {
+        ...state,
+        dataSets: { ...sets },
+      }
+
     // case GENERATE:
-      // let { length, sets } = action;
+    // let { length, sets } = action;
 
     //   return {
     //     ...state,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { StoreProvider } from "./utils/GlobalState";
 import './App.css';
 import {
   Form,
@@ -14,8 +15,8 @@ import DataSetsForm from "./components/DataSetsForm"
 
 function App() {
   return (
+    <StoreProvider>
 
-    <div>
       <Container fluid>
         <Row>
           <Col>header will go here</Col>
@@ -24,10 +25,10 @@ function App() {
       <Container fluid>
         <Row>
           <Col>
-          <SearchInputForm />
+            <SearchInputForm />
           </Col>
           <Col>
-          <DataSetsForm />
+            <DataSetsForm />
           </Col>
         </Row>
       </Container>
@@ -46,8 +47,8 @@ function App() {
           <Col>some graph here</Col>
         </Row>
       </Container>
-    
-    </div>
+
+    </StoreProvider>
   );
 }
 

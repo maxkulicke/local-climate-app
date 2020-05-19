@@ -14,7 +14,7 @@ function SearchInputForm() {
   const handleSubmit = () => {
 
   }
-  
+
   return (
     <div>
       <Form>
@@ -52,7 +52,7 @@ function SearchInputForm() {
           </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit" onclick={handleSubmit}>
-          Submit
+          Search
   </Button>
       </Form>
     </div>
