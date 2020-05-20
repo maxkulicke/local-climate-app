@@ -12,11 +12,12 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchInputForm from './components/SearchInputForm';
 import DataSetsForm from "./components/DataSetsForm"
+import NOAACaller from "./components/NOAACaller"
 
 function App() {
   return (
     <StoreProvider>
-
+      <NOAACaller />
       <Container fluid>
         <Row>
           <Col>header will go here</Col>
