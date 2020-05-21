@@ -4,7 +4,8 @@ import {
   FORM_SUBMIT,
   GET_FIPS,
   CALL_NOAA,
-  PROCESS_DATA,
+  NEW_DATA,
+  PROCESSED_DATA,
   SHOW_GRAPHS,
   SETS_CHANGE
 } from "./actions";
@@ -12,6 +13,7 @@ import {
 export const StoreContext = createContext();
 const initialState = {
   query: false,
+  process: false,
   dataSets: {
     temp: false,
     water: false,
@@ -19,7 +21,8 @@ const initialState = {
     riffs: false,
   },
   zip: "",
-  range: ""
+  range: "",
+  data: {}
 };
 
 const reducer = (state, action) => {
@@ -35,13 +38,30 @@ const reducer = (state, action) => {
       }
 
     case FORM_SUBMIT:
-      console.log(action)
       let { zip, range } = action;
       return {
         ...state,
         query: true,
         zip: zip,
         range: range
+      }
+
+    case NEW_DATA:
+      let { data } = action;
+      return {
+        ...state,
+        query: false,
+        process: true,
+        data: data
+      }
+
+    case PROCESSED_DATA:
+      // let { data } = action;
+      return {
+        ...state,
+        query: false,
+        process: false,
+        data: data
       }
 
     default:

@@ -14,9 +14,7 @@ import {
 } from "../../utils/actions"
 
 function SearchInputForm() {
-
   const [state, dispatch] = useStoreContext();
-
   const [formObject, setFormObject] = useState({})
 
   const handleSubmit = (event) => {

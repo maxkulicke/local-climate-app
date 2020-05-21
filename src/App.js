@@ -13,12 +13,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchInputForm from './components/SearchInputForm';
 import DataSetsForm from "./components/DataSetsForm";
 import NOAACaller from "./components/NOAACaller";
-import Chart from "./components/Chart";
+import ChartSection from "./components/ChartSection";
+import DataOrganizer from "./components/DataOrganizer";
 
 function App() {
   return (
     <StoreProvider>
       <NOAACaller />
+      <DataOrganizer />
       <Container fluid>
         <Row>
           <Col>header will go here</Col>
@@ -34,27 +36,7 @@ function App() {
           </Col>
         </Row>
       </Container>
-      <Container fluid>
-        <Row>
-          <Col>
-            <Chart />
-          </Col>
-        </Row>
-      </Container>
-      <Container fluid>
-        <Row>
-          <Col>
-            <Chart />
-          </Col>
-        </Row>
-      </Container>
-      <Container fluid>
-        <Row>
-          <Col>
-            <Chart />
-          </Col>
-        </Row>
-      </Container>
+      <ChartSection />
 
     </StoreProvider>
   );
