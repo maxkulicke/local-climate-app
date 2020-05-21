@@ -11,8 +11,9 @@ import {
 } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchInputForm from './components/SearchInputForm';
-import DataSetsForm from "./components/DataSetsForm"
-import NOAACaller from "./components/NOAACaller"
+import DataSetsForm from "./components/DataSetsForm";
+import NOAACaller from "./components/NOAACaller";
+import Chart from "./components/Chart";
 
 function App() {
   return (
@@ -35,17 +36,23 @@ function App() {
       </Container>
       <Container fluid>
         <Row>
-          <Col>some graph here</Col>
+          <Col>
+            <Chart />
+          </Col>
         </Row>
       </Container>
       <Container fluid>
         <Row>
-          <Col>some graph here</Col>
+          <Col>
+            <Chart />
+          </Col>
         </Row>
       </Container>
       <Container fluid>
         <Row>
-          <Col>some graph here</Col>
+          <Col>
+            <Chart />
+          </Col>
         </Row>
       </Container>
 

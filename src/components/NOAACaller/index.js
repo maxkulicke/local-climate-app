@@ -18,10 +18,14 @@ function NOAACaller() {
   // })
 
   useEffect(() => {
-    console.log("woof")
     async function fetchData() {
-      let testRes = await api.testCall();
-      console.log(testRes);
+      let PRCP = await api.PRCP();
+      let TAVG = await api.TAVG();
+      let EMXT = await api.EMXT();
+
+      console.log(PRCP);
+      console.log(TAVG);
+      console.log(EMXT);
     }
     fetchData();
   }, [query]);
