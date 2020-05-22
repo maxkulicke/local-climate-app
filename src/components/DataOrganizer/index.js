@@ -11,15 +11,14 @@ function DataOrganizer() {
 
   const organize = () => {
     let dataObject = (createDataObject(data));
-    // console.log(dataObject);
     dataObject = organizeDataBySet(dataObject);
-    // console.log(dataObject);
     dataObject = organizeDataByYear(dataObject);
-    console.log(dataObject);
-
-    // mutate each set into direct array (traverse object down)
-    // within each set, average all data points that share a year
-    // each set should become array of single values for each year
+    dataObject = yearlyAverager(dataObject);
+    
+    dispatch({
+      type: PROCESSED_DATA,
+      data: dataObject,
+    });
   }
 
   const createDataObject = (data) => {
@@ -49,11 +48,9 @@ function DataOrganizer() {
 
     for (const name of Object.keys(data)) {
       if (organizedData.hasOwnProperty(name)) {
-        alert("bing");
       } else {
         organizedData[name] = {};
         let set = data[name];
-
         for (const dataPoint of set) {
           var year = dataPoint.date.slice(0, 4);
           if (organizedData[name].hasOwnProperty(year)) {
@@ -65,9 +62,30 @@ function DataOrganizer() {
         }
       }
     }
-    // console.log(organizedData);
     return organizedData;
+  }
 
+  const yearlyAverager = (data) => {
+    let organizedData = {};
+    for (const name of Object.keys(data)) {
+      if (organizedData.hasOwnProperty(name)) {
+      } else {
+        organizedData[name] = {};
+      }
+      for (const year of Object.keys(data[name])) {
+        if (organizedData.hasOwnProperty(name)) {
+        } else {
+          organizedData[name][year] = 0;
+        }
+        let values = [];
+        for (const dataPoint of data[name][year]) {
+          values.push(dataPoint.value)
+        }
+        let average = averager(values);
+        organizedData[name][year] = average
+      }
+    }
+    return organizedData
   }
 
   function averager(array) {
@@ -75,31 +93,6 @@ function DataOrganizer() {
     let average = sum / array.length;
     return average;
   }
-
-  // function objectMaker(response) {
-  //   var organizedDataSet = {};
-  //   var array = response.results
-  //   for (var i = 0; i < array.length; i++) {
-  //     var year = array[i].date.slice(0, 4);
-  //     if (organizedDataSet.hasOwnProperty(year)) {
-  //       organizedDataSet[year].push(array[i].value);
-  //     }
-  //     else {
-  //       organizedDataSet[year] = [array[i].value];
-  //     }
-  //   }
-  //   var averages = objectAverager(organizedDataSet);
-  //   return averages;
-  // }
-
-  // function objectAverager(object) {
-  //   var avgArray = [];
-  //   for (var property in object) {
-  //     var avg = yearAvg(object[property]);
-  //     avgArray.push(avg);
-  //   }
-  //   return avgArray;
-  // }
 
   useEffect(() => {
     if (process) {

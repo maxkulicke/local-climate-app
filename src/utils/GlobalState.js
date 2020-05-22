@@ -6,7 +6,7 @@ import {
   CALL_NOAA,
   NEW_DATA,
   PROCESSED_DATA,
-  SHOW_GRAPHS,
+  CHART,
   SETS_CHANGE
 } from "./actions";
 
@@ -14,6 +14,7 @@ export const StoreContext = createContext();
 const initialState = {
   query: false,
   process: false,
+  chart: false,
   dataSets: {
     temp: false,
     water: false,
@@ -26,7 +27,6 @@ const initialState = {
 };
 
 const reducer = (state, action) => {
-  let { dataSets } = state;
 
   switch (action.type) {
 
@@ -56,12 +56,11 @@ const reducer = (state, action) => {
       }
 
     case PROCESSED_DATA:
-      // let { data } = action;
       return {
         ...state,
-        query: false,
         process: false,
-        data: data
+        chart: true,
+        data: action.data,
       }
 
     default:
