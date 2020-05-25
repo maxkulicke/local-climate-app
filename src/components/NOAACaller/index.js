@@ -10,25 +10,35 @@ function NOAACaller() {
   const [state, dispatch] = useStoreContext();
   const { query, zip, range, dataSets } = state;
 
+  const findLocation = () => {
+    let location = api.locate(zip);
+  }
+
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData(location) {
       let PRCP = await api.PRCP();
       let TAVG = await api.TAVG();
       let EMXT = await api.EMXT();
+      let all = await api.allDataSets();
 
       let data = {
         PRCP: PRCP,
         TAVG: TAVG,
-        EMXT: EMXT
+        EMXT: EMXT,
+        all: all
+        // PRCP : await api.PRCP(),
+        // TAVG : await api.TAVG(),
+        // EMXT : await api.EMXT(),
       }
-      // console.log(data);
+      console.log(data);
       dispatch({
         type: NEW_DATA,
         data: data
       });
     }
     if (query) {
-      fetchData();
+      // let location = findLocation()
+      fetchData(findLocation());
     }
   }, [query]);
 

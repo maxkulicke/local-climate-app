@@ -16,10 +16,36 @@ const initialState = {
   process: false,
   chart: false,
   dataSets: {
-    temp: false,
-    water: false,
-    ghosts: false,
-    riffs: false,
+    TAVG: false,
+    TMAX: false,
+    TMIN: false,
+    HLYTEMPNORMAL: false,
+    LTMN: false,
+    HTMN: false,
+    LTMX: false,
+    HTMX: false,
+    FZF0: false,
+    FZF5: false,
+    EMNT: false,
+    EMXT: false,
+    HLYHIDXNORMAL: false,
+    HLYWCHLNORMAL: false,
+    HPCP: false,
+    PRCP: false,
+    TPCP: false,
+    TSNW: false,
+    PTA: false,
+    HSNW: false,
+    EMXP: false,
+    EMSN: false,
+    DWPR: false,
+    ACSH: false,
+    AWND: false,
+    FMTM: false,
+    HLYWINDPCTCLM: false,
+    HLYWINDVCTDIR: false,
+    WSFM: false,
+    HLYPRESNORMAL: false
   },
   zip: "",
   range: "",
@@ -56,6 +82,7 @@ const reducer = (state, action) => {
       }
 
     case PROCESSED_DATA:
+      // console.log(action.data)
       return {
         ...state,
         process: false,

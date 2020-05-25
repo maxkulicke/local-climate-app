@@ -15,8 +15,11 @@ function ChartSection() {
   let { chart, data } = state;
 
   const chartMaker = (data) => {
+    console.log("woof")
     let charts = [];
     //tbd start here
+    let chartchart = <Chart poop="poop" />
+    console.log(chartchart)
   }
 
   useEffect(() => {
