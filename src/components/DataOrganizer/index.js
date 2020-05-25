@@ -14,7 +14,7 @@ function DataOrganizer() {
     dataObject = organizeDataBySet(dataObject);
     dataObject = organizeDataByYear(dataObject);
     dataObject = yearlyAverager(dataObject);
-    
+    console.log(dataObject)
     dispatch({
       type: PROCESSED_DATA,
       data: dataObject,
@@ -29,15 +29,18 @@ function DataOrganizer() {
   }
 
   const organizeDataBySet = (data) => {
+    // console.log(data);
     let organizedData = {};
     for (const dataSet of data) {
-      let { datatype } = dataSet[0];
-      if (organizedData.hasOwnProperty(datatype)) {
-        for (const dataPoint of dataSet) {
-          organizedData[datatype].push(dataPoint);
+      if (dataSet !== undefined) {
+        let { datatype } = dataSet[0];
+        if (organizedData.hasOwnProperty(datatype)) {
+          for (const dataPoint of dataSet) {
+            organizedData[datatype].push(dataPoint);
+          }
+        } else {
+          organizedData[datatype] = dataSet;
         }
-      } else {
-        organizedData[datatype] = dataSet;
       }
     }
     return organizedData
@@ -55,7 +58,7 @@ function DataOrganizer() {
           var year = dataPoint.date.slice(0, 4);
           if (organizedData[name].hasOwnProperty(year)) {
             organizedData[name][year].push(dataPoint);
-          } 
+          }
           else {
             organizedData[name][year] = [dataPoint]
           }

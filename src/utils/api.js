@@ -1,4 +1,5 @@
 import axios from "axios";
+import dataSets from "./dataSets"
 
 const caller = async (queryURL) => {
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -19,10 +20,30 @@ const findLocation = () => {
 
 }
 
+const findDataSetId = (index) => {
+  return dataSets[index].id;
+}
+
 export default {
 
   locate: () => {
-    return "woof";
+    return 42101;
+  },
+
+  getData: async (dataSets, location) => {
+    let data = await Promise.all(Object.keys(dataSets).map(async (set, index) => {
+      if (dataSets[set]) {
+        let setId = findDataSetId(index);
+        let queryURL = 
+        "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" 
+        + setId + "&locationid=FIPS:"
+        + location + "&startdate=2010-01-01&enddate=2012-01-01";
+        let setData = await caller(queryURL);
+        return setData
+      }
+    }));
+    data = data.filter(dataSet => dataSet !== undefined)
+    return data;
   },
 
   allDataSets: async () => {
@@ -35,36 +56,5 @@ export default {
     let allDataSetsreturn = await caller(queryURL)
     return allDataSetsreturn;
   },
-
-  // template literals dont work
-  PRCP: async () => {
-    let FIPS = "42101";
-    let queryURL =
-      "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=PRCP&locationid=FIPS:"
-      + FIPS + "&startdate=2010-01-01&enddate=2012-01-01";
-
-    let PRCPreturn = await caller(queryURL)
-    return PRCPreturn;
-  },
-
-  TAVG: async () => {
-    let FIPS = "42101";
-    let queryURL =
-      "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=TAVG&locationid=FIPS:"
-      + FIPS + "&startdate=2010-01-01&enddate=2012-01-01";
-
-    let TAVGreturn = await caller(queryURL)
-    return TAVGreturn;
-  },
-
-  EMXT: async () => {
-    let FIPS = "42101";
-    let queryURL =
-      "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=EMXT&locationid=FIPS:"
-      + FIPS + "&startdate=2010-01-01&enddate=2012-01-01";
-
-    let EMXTreturn = await caller(queryURL)
-    return EMXTreturn;
-  }
 
 }
