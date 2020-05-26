@@ -12,10 +12,6 @@ const dataSets = [
     name: "Minimum temperature"
   },
   {
-    id: "HLY-TEMP-NORMAL",
-    name: "Temperature mean"
-  },
-  {
     id: "LTMN",
     name: "Lowest minimum temperature"
   },
@@ -30,22 +26,6 @@ const dataSets = [
   {
     id: "HTMX",
     name: "Highest maximum temperature"
-  },
-  {
-    id: "FZF0",
-    name: "First freeze <= to 32F/0C of the year."
-  },
-  {
-    id: "FZF5",
-    name: "Last freeze <= 32F/0C of the year"
-  },
-  {
-    id: "EMNT",
-    name: "Extreme minimum temperature for the period."
-  },
-  {
-    id: "EMXT",
-    name: "Extreme maximum temperature for the period."
   },
   {
     id: "HLY-HIDX-NORMAL",
@@ -100,25 +80,9 @@ const dataSets = [
     name: "Average wind speed"
   },
   {
-    id: "FMTM",
-    name: "Time of fastest mile or fastest 1-minute wind"
-  },
-  {
-    id: "HLY-WIND-PCTCLM",
-    name: "Percentage calm"
-  },
-  {
-    id: "HLY-WIND-VCTDIR",
-    name: "Mean wind vector direction"
-  },
-  {
     id: "WSFM",
     name: "Fastest mile wind speed"
   },
-  {
-    id: "HLY-PRES-NORMAL",
-    name: "Sea level pressure mean"
-  }
 ];
 
 export default dataSets;

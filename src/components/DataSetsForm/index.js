@@ -23,15 +23,10 @@ function DataSetsForm() {
     TAVG: false,
     TMAX: false,
     TMIN: false,
-    HLYTEMPNORMAL: false,
     LTMN: false,
     HTMN: false,
     LTMX: false,
     HTMX: false,
-    FZF0: false,
-    FZF5: false,
-    EMNT: false,
-    EMXT: false,
     HLYHIDXNORMAL: false,
     HLYWCHLNORMAL: false,
     HPCP: false,
@@ -45,26 +40,17 @@ function DataSetsForm() {
     DWPR: false,
     ACSH: false,
     AWND: false,
-    FMTM: false,
-    HLYWINDPCTCLM: false,
-    HLYWINDVCTDIR: false,
     WSFM: false,
-    HLYPRESNORMAL: false
   })
 
   const refs = [];
   const TAVGRef = useRef(null);
   const TMAXRef = useRef(null);
   const TMINRef = useRef(null);
-  const HLYTEMPNORMALRef = useRef(null);
   const LTMNRef = useRef(null);
   const HTMNRef = useRef(null);
   const LTMXRef = useRef(null);
   const HTMXRef = useRef(null);
-  const FZF0Ref = useRef(null);
-  const FZF5Ref = useRef(null);
-  const EMNTRef = useRef(null);
-  const EMXTRef = useRef(null);
   const HLYHIDXNORMALRef = useRef(null);
   const HLYWCHLNORMALRef = useRef(null);
   const HPCPRef = useRef(null);
@@ -78,25 +64,16 @@ function DataSetsForm() {
   const DWPRRef = useRef(null);
   const ACSHRef = useRef(null);
   const AWNDRef = useRef(null);
-  const FMTMRef = useRef(null);
-  const HLYWINDPCTCLMRef = useRef(null);
-  const HLYWINDVCTDIRRef = useRef(null);
   const WSFMRef = useRef(null);
-  const HLYPRESNORMALRef = useRef(null);
 
   refs.push(
     TAVGRef,
     TMAXRef,
     TMINRef,
-    HLYTEMPNORMALRef,
     LTMNRef,
     HTMNRef,
     LTMXRef,
     HTMXRef,
-    FZF0Ref,
-    FZF5Ref,
-    EMNTRef,
-    EMXTRef,
     HLYHIDXNORMALRef,
     HLYWCHLNORMALRef,
     HPCPRef,
@@ -110,11 +87,7 @@ function DataSetsForm() {
     DWPRRef,
     ACSHRef,
     AWNDRef,
-    FMTMRef,
-    HLYWINDPCTCLMRef,
-    HLYWINDVCTDIRRef,
     WSFMRef,
-    HLYPRESNORMALRef
   );
 
 
@@ -149,14 +122,61 @@ function DataSetsForm() {
     return checkboxes
   }
 
-  makeCheckboxes();
+  const checkboxRowMaker = (checkboxes) => {
+    let rows = [];
+    for (var i = 0; i < checkboxes.length; i++) {
+      let checkboxRow = (
+        <Row
+          className="rad-row"
+          key={i}
+        >
+          {checkboxes[i]}
+          {checkboxes[i + 1]}
+        </Row>
+      );
+      rows.push(checkboxRow);
+      i++;
+    }
+    return rows;
+  };
+
+  const checkboxArrayMaker = (rows) => {
+    let length = (rows.length % 2 === 0 ? rows.length : rows.length + 1);
+    let firstHalf = [];
+    let secondHalf = [];
+    let columns = []
+    for (let i = 0; i < length / 2; i++) {
+      firstHalf.push(rows[i]);
+    }
+    columns.push(
+      <Col
+        className="rad-col"
+      >
+        {firstHalf}
+      </Col>
+    );
+    for (let i = length / 2; i < length; i++) {
+      secondHalf.push(rows[i]);
+    }
+    columns.push(
+      <Col
+        className="rad-col"
+      >
+        {secondHalf}
+      </Col>
+    );
+    return columns
+  }
+
+  let checkboxArray = checkboxArrayMaker(checkboxRowMaker(makeCheckboxes()));
 
   return (
     <Form>
-      {makeCheckboxes()};
+      <Row>
+        {checkboxArray};
+      </Row>
     </Form>
   );
 }
 
-export default DataSetsForm
-  ;
+export default DataSetsForm;

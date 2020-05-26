@@ -18,7 +18,13 @@ function NOAACaller() {
 
   useEffect(() => {
     async function fetchData(location) {
-      let data = await api.getData(dataSets, location);
+      // let queryInfo = {
+      //   dataSets: dataSets,
+      //   location: location,
+      //   range: range
+      // }
+      let data = await api.getData(dataSets, location, range);
+      console.log("woof");
       console.log(data);
       dispatch({
         type: NEW_DATA,
@@ -26,7 +32,6 @@ function NOAACaller() {
       });
     }
     if (query) {
-      // let location = findLocation()
       fetchData(findLocation());
     }
   }, [query]);

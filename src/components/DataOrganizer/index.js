@@ -10,6 +10,7 @@ function DataOrganizer() {
   const { query, zip, range, dataSets, process, data } = state;
 
   const organize = () => {
+    console.log("woof");
     let dataObject = (createDataObject(data));
     dataObject = organizeDataBySet(dataObject);
     dataObject = organizeDataByYear(dataObject);
