@@ -4,7 +4,7 @@ const moment = require('moment'); // require
 moment().format(); 
 
 const caller = async (queryURL) => {
-  console.log("woof");
+  // console.log("woof");
 
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   let config = {
@@ -17,7 +17,7 @@ const caller = async (queryURL) => {
     },
   };
   let data = await axios(config)
-  console.log("woof");
+  // console.log("woof");
 
   console.log(data);
   return data;
@@ -52,13 +52,13 @@ export default {
   },
 
   getData: async (dataSets, location, range) => {
-    console.log("woof");
+    // console.log("woof");
     range = parseInt(range);
     let yearRange = getRange(range, getYear());
     let { start, end } = yearRange;
     let data = await Promise.all(Object.keys(dataSets).map(async (set, index) => {
       if (dataSets[set]) {
-        console.log("woof");
+        // console.log("woof");
         let setId = findDataSetId(index);
         let queryURL = 
         "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId + 

@@ -13,13 +13,17 @@ import Chart from "../Chart"
 function ChartSection() {
   const [state, dispatch] = useStoreContext();
   let { chart, data } = state;
+  const [charts, setCharts] = useState([]);
 
   const chartMaker = (data) => {
-    console.log("woof")
-    let charts = [];
-    //tbd start here
-    let chartchart = <Chart poop="poop" />
-    console.log(chartchart)
+    setCharts(Object.keys(data).map((set) => {
+      // console.log(set);
+      return (
+        <Chart 
+        name={set}
+        data={data[set]} />
+      )
+    }));
   }
 
   useEffect(() => {
@@ -32,7 +36,7 @@ function ChartSection() {
     <Container fluid>
       <Row>
         <Col>
-          <Chart />
+          {charts}
         </Col>
       </Row>
     </Container>

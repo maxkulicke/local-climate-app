@@ -24,8 +24,8 @@ function NOAACaller() {
       //   range: range
       // }
       let data = await api.getData(dataSets, location, range);
-      console.log("woof");
-      console.log(data);
+      // console.log("woof");
+      // console.log(data);
       dispatch({
         type: NEW_DATA,
         data: data

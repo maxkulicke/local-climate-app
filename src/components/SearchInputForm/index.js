@@ -44,7 +44,7 @@ function SearchInputForm() {
         </Form.Group>
 
         <Form.Group controlId="yearForm">
-          <Form.Label>How far would you like to search</Form.Label>
+          <Form.Label>How far back would you like to search?</Form.Label>
           <Form.Text className="text-muted">
             The farther back the search, the easier it is to determine long term trends
     </Form.Text>
