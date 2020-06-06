@@ -9,6 +9,7 @@ import {
   Col
 } from "react-bootstrap";
 import Chart from "../Chart"
+import { CHART } from "../../utils/actions"
 
 function ChartSection() {
   const [state, dispatch] = useStoreContext();
@@ -30,6 +31,9 @@ function ChartSection() {
     if (chart) {
       chartMaker(data);
     }
+    dispatch({
+      type: CHART,
+    });
   }, [chart]);
 
   return (

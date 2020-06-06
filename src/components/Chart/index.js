@@ -22,6 +22,11 @@ class Chart extends React.Component {
     chartData.series.push(dataSeries);
     console.log(chartData);
     // console.log(values);
+    let chartOptions = {
+      showArea: true,
+      showLine: false,
+      showPoint: false,
+    }
 
     return (
       <div>
@@ -30,7 +35,7 @@ class Chart extends React.Component {
         <br />
         <br />
 
-        <ChartistGraph data={chartData} type={'Line'} />
+        <ChartistGraph data={chartData} options={chartOptions} type={'Line'} />
       </div>
     );
   }

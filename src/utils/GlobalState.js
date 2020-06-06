@@ -13,6 +13,7 @@ import {
 export const StoreContext = createContext();
 const initialState = {
   query: false,
+  loading: true,
   process: false,
   chart: false,
   dataSets: {
@@ -38,6 +39,8 @@ const initialState = {
     AWND: false,
     WSFM: false,
   },
+  // city: "",
+  // state: "",
   zip: "",
   range: "",
   data: {}
@@ -55,10 +58,13 @@ const reducer = (state, action) => {
       }
 
     case FORM_SUBMIT:
-      let { zip, range } = action;
+      let { city, zip, range } = action;
       return {
         ...state,
         query: true,
+        loading: true,
+        // city: city,
+        // state: state,
         zip: zip,
         range: range
       }
@@ -79,6 +85,13 @@ const reducer = (state, action) => {
         process: false,
         chart: true,
         data: action.data,
+      }
+
+    case CHART:
+      return {
+        ...state,
+        chart: false,
+        loading: false
       }
 
     default:

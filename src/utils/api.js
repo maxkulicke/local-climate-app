@@ -1,10 +1,9 @@
 import axios from "axios";
 import dataSets from "./dataSets"
 const moment = require('moment'); // require
-moment().format(); 
+moment().format();
 
 const caller = async (queryURL) => {
-  // console.log("woof");
 
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   let config = {
@@ -17,14 +16,33 @@ const caller = async (queryURL) => {
     },
   };
   let data = await axios(config)
-  // console.log("woof");
+    .catch((error) => {
+      return "ERROR"
+    })
 
   console.log(data);
   return data;
 }
 
-const findLocation = () => {
-
+const findLocation = async (zip) => {
+  console.log(zip)
+  const smartyStreetsToken = "remM8j4TDDnHBtRYp3JH";
+  const smartyStreetsID = "62e24096-94a0-bcf2-3b6d-206b893f0175";
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  let queryURL
+    = "https://us-zipcode.api.smartystreets.com/lookup?auth-id=" + smartyStreetsID +
+    "&auth-token=" + smartyStreetsToken + "&zipcode=" + zip;
+  let config = {
+    method: "get",
+    url: queryURL,
+  };
+  let data = await axios(config)
+    .catch((error) => {
+      console.log(error);
+      return "ERROR"
+    })
+    console.log(data);
+  // console.log(data[0].zipcodes[0].county_fips);
 }
 
 const findDataSetId = (index) => {
@@ -47,8 +65,10 @@ const getRange = (range, now) => {
 
 export default {
 
-  locate: () => {
-    return 42101;
+  locate: async (zip) => {
+    let location = await findLocation(zip);
+    console.log(location)
+    return location;
   },
 
   getData: async (dataSets, location, range) => {
@@ -60,15 +80,16 @@ export default {
       if (dataSets[set]) {
         // console.log("woof");
         let setId = findDataSetId(index);
-        let queryURL = 
-        "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId + 
-        "&locationid=FIPS:"+ location + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
+        let queryURL =
+          "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
+          "&locationid=FIPS:" + location + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
         let setData = await caller(queryURL);
         return setData;
       }
     }));
     console.log(data);
     data = data.filter(dataSet => dataSet !== undefined)
+    console.log(data);
     return data;
   },
 

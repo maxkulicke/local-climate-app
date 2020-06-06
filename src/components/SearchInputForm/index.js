@@ -22,6 +22,8 @@ function SearchInputForm() {
     let { zip, range } = formObject
     dispatch({
       type: FORM_SUBMIT,
+      city: "",
+      state: "",
       zip: zip,
       range: range
     });

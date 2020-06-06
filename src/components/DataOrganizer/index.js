@@ -24,7 +24,11 @@ function DataOrganizer() {
 
   const createDataObject = (data) => {
     let dataObject = Object.keys(data).map((set) => {
-      return data[set].data.results
+      if (data[set] === "ERROR") {
+        return "ERROR"
+      } else {
+        return data[set].data.results
+      }
     })
     return dataObject
   }
@@ -33,7 +37,7 @@ function DataOrganizer() {
     // console.log(data);
     let organizedData = {};
     for (const dataSet of data) {
-      if (dataSet !== undefined) {
+      if (dataSet !== undefined && dataSet !== "ERROR") {
         let { datatype } = dataSet[0];
         if (organizedData.hasOwnProperty(datatype)) {
           for (const dataPoint of dataSet) {
