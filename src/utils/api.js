@@ -42,7 +42,7 @@ const findLocation = async (zip) => {
       console.log(error);
       return "ERROR"
     })
-    console.log(data);
+  console.log(data);
   // console.log(data[0].zipcodes[0].county_fips);
 }
 
@@ -76,6 +76,7 @@ export default {
     range = parseInt(range);
     let yearRange = getRange(range, getYear());
     let { start, end } = yearRange;
+    let counter = 0;
     let data = await Promise.all(Object.keys(dataSets).map(async (set, index) => {
       if (dataSets[set]) {
         let setId = findDataSetId(index);
