@@ -2,20 +2,20 @@ import React, { useState, useRef, useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
-  PROCESSED_DATA
+  PROCESSED_DATA,
+  ERROR
 } from "../../utils/actions";
 
 function DataOrganizer() {
   const [state, dispatch] = useStoreContext();
-  const { query, zip, range, dataSets, process, data } = state;
+  const { process, data } = state;
 
   const organize = () => {
-    // console.log("woof");
+    // console.log(data);
     let dataObject = (createDataObject(data));
     dataObject = organizeDataBySet(dataObject);
     dataObject = organizeDataByYear(dataObject);
     dataObject = yearlyAverager(dataObject);
-    console.log(dataObject)
     dispatch({
       type: PROCESSED_DATA,
       data: dataObject,
@@ -24,7 +24,11 @@ function DataOrganizer() {
 
   const createDataObject = (data) => {
     let dataObject = Object.keys(data).map((set) => {
-      if (data[set] === "ERROR") {
+      if (typeof data[set] === "string") {
+        dispatch({
+          type: ERROR,
+          error: data[set],
+        });
         return "ERROR"
       } else {
         return data[set].data.results
@@ -34,7 +38,6 @@ function DataOrganizer() {
   }
 
   const organizeDataBySet = (data) => {
-    // console.log(data);
     let organizedData = {};
     for (const dataSet of data) {
       if (dataSet !== undefined && dataSet !== "ERROR") {
@@ -53,7 +56,6 @@ function DataOrganizer() {
 
   const organizeDataByYear = (data) => {
     let organizedData = {};
-
     for (const name of Object.keys(data)) {
       if (organizedData.hasOwnProperty(name)) {
       } else {

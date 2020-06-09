@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import {
-  Form,
-  Button,
-  Card,
-  Container,
-  Row,
-  Col,
   Modal,
 } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,14 +29,6 @@ function LoadingModal() {
           <Modal.Title>Loading</Modal.Title>
         </Modal.Header>
         <Modal.Body>We're grabbing your data and crunching some numbers....</Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={closeModal}>
-            Save Changes
-          </Button>
-        </Modal.Footer> */}
       </Modal>
     </>
   );

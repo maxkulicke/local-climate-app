@@ -16,6 +16,17 @@ function NOAACaller() {
     return location;
   }
 
+  const fipsRandomizer = () => {
+    let fips = [
+      42101,
+      36061,
+      37119,
+      "06075",
+      53033,
+    ];
+    return fips[Math.floor(Math.random() * fips.length)]
+  }
+
   useEffect(() => {
     async function fetchData(location) {
       let data = await api.getData(dataSets, location, range);
@@ -26,7 +37,7 @@ function NOAACaller() {
     }
     if (query) {
       // fetchData(findLocation(zip));
-      fetchData(42101);
+      fetchData(fipsRandomizer());
 
     }
   }, [query]);

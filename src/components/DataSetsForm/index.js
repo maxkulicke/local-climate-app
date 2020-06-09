@@ -94,9 +94,7 @@ function DataSetsForm() {
   const handleChange = (event) => {
     for (const ref of refs) {
       let { id, checked } = ref.current;
-      // console.log(id)
       id = id.replace(/-/g, "");
-      // console.log(id)
       sets[id] = checked;
     }
     dispatch({

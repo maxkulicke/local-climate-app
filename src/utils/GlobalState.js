@@ -4,6 +4,7 @@ import {
   FORM_SUBMIT,
   GET_FIPS,
   CALL_NOAA,
+  ERROR,
   NEW_DATA,
   PROCESSED_DATA,
   CHART,
@@ -39,11 +40,10 @@ const initialState = {
     AWND: false,
     WSFM: false,
   },
-  // city: "",
-  // state: "",
   zip: "",
   range: "",
-  data: {}
+  data: {},
+  errors: []
 };
 
 const reducer = (state, action) => {
@@ -58,15 +58,14 @@ const reducer = (state, action) => {
       }
 
     case FORM_SUBMIT:
-      let { city, zip, range } = action;
+      let { zip, range } = action;
       return {
         ...state,
         query: true,
         loading: true,
-        // city: city,
-        // state: state,
         zip: zip,
-        range: range
+        range: range,
+        errors: []
       }
 
     case NEW_DATA:
@@ -79,7 +78,6 @@ const reducer = (state, action) => {
       }
 
     case PROCESSED_DATA:
-      // console.log(action.data)
       return {
         ...state,
         process: false,
@@ -92,6 +90,14 @@ const reducer = (state, action) => {
         ...state,
         chart: false,
         loading: false
+      }
+
+      case ERROR: 
+      let { errors } = state;
+      errors.push(action.error)
+      return {
+        ...state,
+        errors: errors,
       }
 
     default:

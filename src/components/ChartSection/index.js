@@ -18,7 +18,6 @@ function ChartSection() {
 
   const chartMaker = (data) => {
     setCharts(Object.keys(data).map((set) => {
-      // console.log(set);
       return (
         <Chart 
         name={set}
@@ -45,7 +44,6 @@ function ChartSection() {
       </Row>
     </Container>
   )
-
 }
 
 export default ChartSection;

@@ -17,15 +17,16 @@ const caller = async (queryURL) => {
   };
   let data = await axios(config)
     .catch((error) => {
+      console.log(error);
       return "ERROR"
     })
 
-  console.log(data);
+  // console.log(data);
   return data;
 }
 
 const findLocation = async (zip) => {
-  console.log(zip)
+  // console.log(zip)
   const smartyStreetsToken = "remM8j4TDDnHBtRYp3JH";
   const smartyStreetsID = "62e24096-94a0-bcf2-3b6d-206b893f0175";
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -72,19 +73,18 @@ export default {
   },
 
   getData: async (dataSets, location, range) => {
-    // console.log("woof");
     range = parseInt(range);
     let yearRange = getRange(range, getYear());
     let { start, end } = yearRange;
     let data = await Promise.all(Object.keys(dataSets).map(async (set, index) => {
       if (dataSets[set]) {
-        // console.log("woof");
         let setId = findDataSetId(index);
         let queryURL =
           "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
           "&locationid=FIPS:" + location + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
         let setData = await caller(queryURL);
-        return setData;
+        return (setData !== "ERROR" ? setData : `${setId}: ${setData}`);
+        // return setData;
       }
     }));
     console.log(data);

@@ -27,15 +27,15 @@ function App() {
       <Container fluid>
       <LoadingModal />
         <Row>
-          <Col>header will go here
+          <Col>Welcome to Max's Climate Data App
           <br />
           To Do:
           <br />
           different graph
           <br />
-          loading animation / alert
+          more than 5 datasets
           <br />
-          error handling for NOAACaller
+          error display after call
           <br />
           FIPS / zip handling (smartyStreets)
           </Col>
