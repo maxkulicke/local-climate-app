@@ -18,27 +18,22 @@ const initialState = {
   process: false,
   chart: false,
   dataSets: {
-    TAVG: false,
-    TMAX: false,
-    TMIN: false,
-    LTMN: false,
-    HTMN: false,
-    LTMX: false,
-    HTMX: false,
-    HLYHIDXNORMAL: false,
-    HLYWCHLNORMAL: false,
-    HPCP: false,
-    PRCP: false,
-    TPCP: false,
-    TSNW: false,
-    PTA: false,
-    HSNW: false,
-    EMXP: false,
-    EMSN: false,
-    DWPR: false,
-    ACSH: false,
-    AWND: false,
-    WSFM: false,
+    temperature: {
+      selected: false,
+      sets: ["TAVG", "TMAX", "TMIN", "HLYHIDXNORMAL", "HLYWCHLNORMAL"]
+    },
+    precipitation: {
+      selected: false,
+      sets: ["HPCP", "PRCP", "TPCP", "TSNW", "PTA"]
+    },
+    average: {
+      selected: false,
+      sets: ["DWPR", "ACSH", "AWND"]
+    },
+    extreme: {
+      selected: false,
+      sets: ["HSNW", "EMXP", "EMSN", "WSFM"]
+    },
   },
   zip: "",
   range: "",
@@ -52,9 +47,13 @@ const reducer = (state, action) => {
 
     case SETS_CHANGE:
       let { sets } = action;
+      let updatedSets = state.dataSets;
+      for (const set of Object.keys(sets)) {
+        updatedSets[set].selected = sets[set];
+      }
       return {
         ...state,
-        dataSets: { ...sets },
+        dataSets: { ...updatedSets },
       }
 
     case FORM_SUBMIT:
@@ -92,7 +91,7 @@ const reducer = (state, action) => {
         loading: false
       }
 
-      case ERROR: 
+    case ERROR:
       let { errors } = state;
       errors.push(action.error)
       return {
