@@ -95,9 +95,7 @@ export default {
         return dataSet;
       }
     }));
-    // console.log(data);
     data = data.filter(dataSet => dataSet !== undefined)
-    console.log(data);
     return data;
   },
 

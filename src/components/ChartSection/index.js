@@ -14,21 +14,41 @@ import { CHART } from "../../utils/actions"
 function ChartSection() {
   const [state, dispatch] = useStoreContext();
   let { chart, data } = state;
-  const [charts, setCharts] = useState([]);
+  const [chartSection, setChartSection] = useState([]);
+  // const [charts, setCharts] = useState([]);
 
-  const chartMaker = (data) => {
-    setCharts(Object.keys(data).map((set) => {
+  const chartSectionMaker = (data) => {
+    console.log(data)
+    setChartSection(Object.keys(data).map((set) => {
+      console.log(data[set].name);
+      let charts = chartMaker(data[set].data)
       return (
-        <Chart 
-        name={set}
-        data={data[set]} />
+        <Container fluid>
+          <h3>{set}</h3>
+          <Row>
+            <Col>
+              {charts}
+            </Col>
+          </Row>
+        </Container>
       )
     }));
   }
 
+  const chartMaker = (data) => {
+    let charts = Object.keys(data).map((set) => {
+      return (
+        <Chart
+          name={set}
+          data={data[set]} />
+      )
+    });
+    return charts;
+  }
+
   useEffect(() => {
     if (chart) {
-      chartMaker(data);
+      chartSectionMaker(data);
     }
     dispatch({
       type: CHART,
@@ -39,7 +59,7 @@ function ChartSection() {
     <Container fluid>
       <Row>
         <Col>
-          {charts}
+          {chartSection}
         </Col>
       </Row>
     </Container>

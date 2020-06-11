@@ -11,20 +11,16 @@ function DataOrganizer() {
   const { process, data } = state;
 
   const organize = () => {
-    // console.log(data);
     let processedDataObject = {}
     for (const set of data) {
       let {name} = set;
-      console.log(name)
       processedDataObject[name] = {}
       let dataObject = (createDataObject(set.data));
       dataObject = organizeDataBySet(dataObject);
       dataObject = organizeDataByYear(dataObject);
       dataObject = yearlyAverager(dataObject);
-      console.log(dataObject);
       processedDataObject[name].data = dataObject
     }
-    console.log(processedDataObject);
     dispatch({
       type: PROCESSED_DATA,
       data: processedDataObject,
@@ -32,12 +28,10 @@ function DataOrganizer() {
   }
 
   const createDataObject = (data) => {
-    console.log(data);
-
     let dataObject = Object.keys(data).map((set) => {
       if (typeof data[set] === "string") {
         let error = data[set].slice(0,4);
-        console.log(error);
+        // console.log(error);
         dispatch({
           type: ERROR,
           error: error,

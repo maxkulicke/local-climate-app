@@ -2,8 +2,6 @@ import React, { createContext, useReducer, useContext } from "react";
 
 import {
   FORM_SUBMIT,
-  GET_FIPS,
-  CALL_NOAA,
   ERROR,
   NEW_DATA,
   PROCESSED_DATA,
