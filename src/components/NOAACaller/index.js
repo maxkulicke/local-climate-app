@@ -29,7 +29,7 @@ function NOAACaller() {
 
   useEffect(() => {
     async function fetchData(location) {
-      console.log(dataSets)
+      // console.log(dataSets)
       let data = await api.getData(dataSets, location, range);
       console.log(data);
       dispatch({
@@ -40,7 +40,6 @@ function NOAACaller() {
     if (query) {
       // fetchData(findLocation(zip));
       fetchData(fipsRandomizer());
-
     }
   }, [query]);
 

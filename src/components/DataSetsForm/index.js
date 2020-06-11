@@ -46,7 +46,6 @@ function DataSetsForm() {
       id = id.replace(/-/g, "");
       sets[id] = checked;
     }
-    console.log(sets);
     dispatch({
       type: SETS_CHANGE,
       sets: sets

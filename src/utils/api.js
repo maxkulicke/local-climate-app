@@ -76,19 +76,26 @@ export default {
     range = parseInt(range);
     let yearRange = getRange(range, getYear());
     let { start, end } = yearRange;
-    let counter = 0;
     let data = await Promise.all(Object.keys(dataSets).map(async (set, index) => {
-      if (dataSets[set]) {
-        let setId = findDataSetId(index);
-        let queryURL =
-          "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
-          "&locationid=FIPS:" + location + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
-        let setData = await caller(queryURL);
-        return (setData !== "ERROR" ? setData : `${setId}: ${setData}`);
-        // return setData;
+      if (dataSets[set].selected) {
+        let dataCollection = [];
+        for (const setId of dataSets[set].sets) {
+          // let setId = findDataSetId(index);
+          let queryURL =
+            "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
+            "&locationid=FIPS:" + location + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
+          let setData = await caller(queryURL);
+          dataCollection.push((setData !== "ERROR" ? setData : `${setId}: ${setData}`));
+          // return setData;
+        }
+        let dataSet = {
+          name: set,
+          data: dataCollection
+        }
+        return dataSet;
       }
     }));
-    console.log(data);
+    // console.log(data);
     data = data.filter(dataSet => dataSet !== undefined)
     console.log(data);
     return data;
