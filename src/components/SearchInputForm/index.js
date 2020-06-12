@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
+import FIPS from "../../utils/fips"
 import {
   Form,
   Button,
@@ -16,6 +17,8 @@ import {
 function SearchInputForm() {
   const [state, dispatch] = useStoreContext();
   const [formObject, setFormObject] = useState({})
+  const [stateList, setStateList] = useState(Object.keys(FIPS))
+  // console.log(stateList)
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,6 +31,14 @@ function SearchInputForm() {
       range: range
     });
   }
+  const optionMaker = (array) => {
+    return array.map((item) => {
+      return (
+        <option>{item}</option>
+      )
+    });
+    // return options;
+  }
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -39,6 +50,10 @@ function SearchInputForm() {
       <Form>
         <Form.Group controlId="zipForm">
           <Form.Label>Please enter your zip code</Form.Label>
+          <Form.Label>Example select</Form.Label>
+          <Form.Control as="select">
+            {optionMaker(stateList)}
+          </Form.Control>
           <Form.Control placeholder="zip code" name="zip" onChange={handleInputChange} />
           <Form.Text className="text-muted">
             We save no data on our users
