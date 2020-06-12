@@ -20,20 +20,16 @@ function SearchInputForm() {
   const [stateList, setStateList] = useState(Object.keys(FIPS))
   const [countyShow, setCountyShow] = useState(false);
   const [rangeShow, setRangeShow] = useState(false);
+  const [buttonShow, setButtonShow] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formObject.range);
-    if (formObject.county && formObject.range) {
-      let { county, range } = formObject
-      dispatch({
-        type: FORM_SUBMIT,
-        county: county,
-        range: range
-      });
-    } else {
-      alert("you must have a county selected")
-    }
+    let { county, range } = formObject
+    dispatch({
+      type: FORM_SUBMIT,
+      county: county,
+      range: range
+    });
   }
   const optionMaker = (array) => {
     return array.map((item) => {
@@ -55,6 +51,9 @@ function SearchInputForm() {
     }
     if (name === "county") {
       setRangeShow(true)
+    }
+    if (name === "range") {
+      setButtonShow(true)
     }
     setFormObject({ ...formObject, [name]: value });
   }
@@ -101,6 +100,16 @@ function SearchInputForm() {
     return rangeForm;
   }
 
+  const buttonBuddy = () => {
+    let button = (
+      buttonShow ?
+      <Button variant="primary" type="submit" onClick={handleSubmit}>
+      Search
+</Button>
+        : "");
+    return button;
+  }
+
   return (
     <div>
       <Form>
@@ -112,9 +121,11 @@ function SearchInputForm() {
             {optionMaker(stateList)}
           </Form.Control>
         </Form.Group>
-          {countyForm()}
+        {countyForm()}
 
         {rangeForm()}
+
+        {buttonBuddy()}
         {/* <Form.Group show={rangeShow} controlId="yearForm">
           <Form.Label>How far back would you like to search?</Form.Label>
           <Form.Text className="text-muted">
@@ -140,9 +151,9 @@ function SearchInputForm() {
             <option>75 years</option>
           </Form.Control>
         </Form.Group> */}
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
+        {/* <Button variant="primary" type="submit" onClick={handleSubmit}>
           Search
-  </Button>
+  </Button> */}
       </Form>
     </div>
   );
