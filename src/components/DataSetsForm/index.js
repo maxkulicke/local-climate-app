@@ -39,7 +39,6 @@ function DataSetsForm() {
     extremeRef
   );
 
-
   const handleChange = (event) => {
     for (const ref of refs) {
       let { id, checked } = ref.current;
@@ -54,7 +53,6 @@ function DataSetsForm() {
 
   const makeCheckboxes = () => {
     let checkboxes = Object.keys(sets).map((set, index) => {
-      // let { id, name } = set
       return (
         <Form.Group controlId={set}>
           <Form.Check
@@ -69,14 +67,11 @@ function DataSetsForm() {
     return checkboxes
   }
 
-  // const checkboxArranger = (checkboxes) => {
-
-  // }
-
   let checkboxArray = makeCheckboxes();
 
   return (
     <Form>
+      <p>Select the data groups you are interested in</p>
       <Row>
         <Col>
           {checkboxArray[0]}
@@ -92,68 +87,3 @@ function DataSetsForm() {
 }
 
 export default DataSetsForm;
-
-// const makeCheckboxes = () => {
-//   let checkboxes = dataSets.map((set, index) => {
-//     let { id, name } = set
-//     return (
-//       <Form.Group controlId={id}>
-//         <Form.Check
-//           type="checkbox"
-//           ref={refs[index]}
-//           label={`${id} : ${name}`}
-//           onChange={handleChange}
-//         />
-//       </Form.Group>
-//     )
-//   })
-//   return checkboxes
-// }
-
-// const checkboxRowMaker = (checkboxes) => {
-//   let rows = [];
-//   for (var i = 0; i < checkboxes.length; i++) {
-//     let checkboxRow = (
-//       <Row
-//         className="rad-row"
-//         key={i}
-//       >
-//         {checkboxes[i]}
-//         {checkboxes[i + 1]}
-//       </Row>
-//     );
-//     rows.push(checkboxRow);
-//     i++;
-//   }
-//   return rows;
-// };
-
-// const checkboxArrayMaker = (rows) => {
-//   let length = (rows.length % 2 === 0 ? rows.length : rows.length + 1);
-//   let firstHalf = [];
-//   let secondHalf = [];
-//   let columns = []
-//   for (let i = 0; i < length / 2; i++) {
-//     firstHalf.push(rows[i]);
-//   }
-//   columns.push(
-//     <Col
-//       className="rad-col"
-//     >
-//       {firstHalf}
-//     </Col>
-//   );
-//   for (let i = length / 2; i < length; i++) {
-//     secondHalf.push(rows[i]);
-//   }
-//   columns.push(
-//     <Col
-//       className="rad-col"
-//     >
-//       {secondHalf}
-//     </Col>
-//   );
-//   return columns
-// }
-
-// let checkboxArray = checkboxArrayMaker(checkboxRowMaker(makeCheckboxes()));

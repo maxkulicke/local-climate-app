@@ -25,27 +25,6 @@ const caller = async (queryURL) => {
   return data;
 }
 
-// const findLocation = async (zip) => {
-//   // console.log(zip)
-//   const smartyStreetsToken = "remM8j4TDDnHBtRYp3JH";
-//   const smartyStreetsID = "62e24096-94a0-bcf2-3b6d-206b893f0175";
-//   const proxyurl = "https://cors-anywhere.herokuapp.com/";
-//   let queryURL
-//     = "https://us-zipcode.api.smartystreets.com/lookup?auth-id=" + smartyStreetsID +
-//     "&auth-token=" + smartyStreetsToken + "&zipcode=" + zip;
-//   let config = {
-//     method: "get",
-//     url: queryURL,
-//   };
-//   let data = await axios(config)
-//     .catch((error) => {
-//       console.log(error);
-//       return "ERROR"
-//     })
-//   console.log(data);
-//   // console.log(data[0].zipcodes[0].county_fips);
-// }
-
 const findDataSetId = (index) => {
   return dataSets[index].id;
 }
@@ -65,12 +44,6 @@ const getRange = (range, now) => {
 }
 
 export default {
-
-  // locate: async (zip) => {
-  //   let location = await findLocation(zip);
-  //   console.log(location)
-  //   return location;
-  // },
 
   getData: async (dataSets, fips, range) => {
     range = parseInt(range);

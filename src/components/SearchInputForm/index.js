@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import FIPS from "../../utils/fips"
+import DataSetsForm from "../DataSetsForm";
 import {
   Form,
   Button,
@@ -18,6 +19,7 @@ function SearchInputForm() {
   const [countyShow, setCountyShow] = useState(false);
   const [rangeShow, setRangeShow] = useState(false);
   const [buttonShow, setButtonShow] = useState(false);
+  const [dataFormShow, setDataFormShow] = useState(false);
   const [searchShow, setSearchShow] = useState(true);
 
 
@@ -57,7 +59,8 @@ function SearchInputForm() {
       setRangeShow(true)
     }
     if (name === "range") {
-      setButtonShow(true)
+      setButtonShow(true);
+      setDataFormShow(true);
     }
     setFormObject({ ...formObject, [name]: value });
   }
@@ -99,6 +102,14 @@ function SearchInputForm() {
     return rangeForm;
   }
 
+  const dataForm = () => {
+    let dataForm = (
+      dataFormShow ?
+        <DataSetsForm />
+        : "");
+    return dataForm;
+  }
+
   const buttonBuddy = () => {
     let button = (
       buttonShow ?
@@ -128,6 +139,7 @@ function SearchInputForm() {
           </Form.Group>
           {countyForm()}
           {rangeForm()}
+          {dataForm()}
           {buttonBuddy()}
         </Form>
       </div>

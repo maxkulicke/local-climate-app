@@ -15,7 +15,6 @@ import DataSetsForm from "./components/DataSetsForm";
 import NOAACaller from "./components/NOAACaller";
 import ChartSection from "./components/ChartSection";
 import DataOrganizer from "./components/DataOrganizer";
-import FIPSfinder from "./components/FIPSfinder";
 import LoadingModal from "./components/LoadingModal"
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
     <StoreProvider>
       <NOAACaller />
       <DataOrganizer />
-      <FIPSfinder />
       <Container fluid>
       <LoadingModal />
         <Row>
@@ -44,9 +42,9 @@ function App() {
           <Col>
             <SearchInputForm />
           </Col>
-          <Col>
+          {/* <Col>
             <DataSetsForm />
-          </Col>
+          </Col> */}
         </Row>
       </Container>
       <ChartSection />
