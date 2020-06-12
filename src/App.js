@@ -36,8 +36,6 @@ function App() {
           more than 5 datasets
           <br />
           error display after call
-          <br />
-          FIPS / zip handling (smartyStreets)
           </Col>
         </Row>
       </Container>

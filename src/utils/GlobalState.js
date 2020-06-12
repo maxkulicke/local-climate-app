@@ -55,12 +55,12 @@ const reducer = (state, action) => {
       }
 
     case FORM_SUBMIT:
-      let { zip, range } = action;
+      let { fips, range } = action;
       return {
         ...state,
         query: true,
         loading: true,
-        zip: zip,
+        fips: fips,
         range: range,
         errors: []
       }

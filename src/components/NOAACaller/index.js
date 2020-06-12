@@ -8,28 +8,28 @@ import api from "../../utils/api";
 
 function NOAACaller() {
   const [state, dispatch] = useStoreContext();
-  const { query, zip, range, dataSets } = state;
+  const { query, fips, range, dataSets } = state;
 
-  const findLocation = async () => {
-    let location = await api.locate(zip);
+  // const findLocation = async () => {
+  //   let location = await api.locate(zip);
     
-    return location;
-  }
+  //   return location;
+  // }
 
-  const fipsRandomizer = () => {
-    let fips = [
-      42101,
-      36061,
-      37119,
-      "06075",
-      53033,
-    ];
-    return fips[Math.floor(Math.random() * fips.length)]
-  }
+  // const fipsRandomizer = () => {
+  //   let fips = [
+  //     42101,
+  //     36061,
+  //     37119,
+  //     "06075",
+  //     53033,
+  //   ];
+  //   return fips[Math.floor(Math.random() * fips.length)]
+  // }
 
   useEffect(() => {
-    async function fetchData(location) {
-      let data = await api.getData(dataSets, location, range);
+    async function fetchData(fips) {
+      let data = await api.getData(dataSets, fips, range);
       dispatch({
         type: NEW_DATA,
         data: data
@@ -37,7 +37,7 @@ function NOAACaller() {
     }
     if (query) {
       // fetchData(findLocation(zip));
-      fetchData(fipsRandomizer());
+      fetchData(fips);
     }
   }, [query]);
 
