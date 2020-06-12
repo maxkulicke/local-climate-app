@@ -1,7 +1,7 @@
 const dataSets = [
   {
     id: "TAVG",
-    name: "Average Temperature."
+    name: "Average temperature."
   },
   {
     id: "TMAX",
