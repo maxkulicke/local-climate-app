@@ -18,9 +18,9 @@ function ChartSection() {
   // const [charts, setCharts] = useState([]);
 
   const chartSectionMaker = (data) => {
-    console.log(data)
+    // console.log(data)
     setChartSection(Object.keys(data).map((set) => {
-      console.log(data[set].name);
+      // console.log(data[set]);
       let charts = chartMaker(data[set].data)
       return (
         <Container fluid>
