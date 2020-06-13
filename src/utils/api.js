@@ -20,8 +20,6 @@ const caller = async (queryURL) => {
       console.log(error);
       return "ERROR"
     })
-
-  // console.log(data);
   return data;
 }
 

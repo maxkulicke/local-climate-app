@@ -141,7 +141,7 @@ function SearchInputForm() {
       <div>
         <Form>
           <Form.Group controlId="zipForm">
-            <Form.Label>Please select a state to begin</Form.Label>
+            <Form.Label><h5>Please select a state to begin</h5></Form.Label>
             <Form.Control as="select" placeholder="state" name="state" onChange={handleInputChange}>
               <option>state...</option>
               {optionMaker(stateList)}

@@ -93,9 +93,7 @@ const reducer = (state, action) => {
 
     case ERROR:
       let { errors } = state;
-      console.log(errors)
       errors.push(action.error)
-      console.log(errors)
       return {
         ...state,
         errors: errors,

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
+import dataSets from "../../utils/dataSets";
+import ErrorModal from "../ErrorModal"
 import {
   Form,
   Button,
   ListGroup,
   FormControl,
   Card,
+  Modal,
   Container,
   Row,
   Col
@@ -14,53 +17,74 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SearchInputForm() {
   const [state, dispatch] = useStoreContext();
-  let { errors } = state;
+  let { errors, chart, restart } = state;
   let [errorsList, setErrorsList] = useState([]);
+  let [showErrors, setShowErrors] = useState(false);
 
   const errorMaker = (array) => {
+    findDuplicates(array);
+    let errorArray = addDescriptions(array);
     setErrorsList(
-      array.map((item) => {
+      errorArray.map((item) => {
         return (
           <ListGroup.Item>{item}</ListGroup.Item>
         )
       })
     );
-    console.log(errorsList)
   }
 
+  const findDuplicates = (array) => {
+    for (let i = 0; i < array.length; i++) {
+      for (let j = i + 1; j < array.length; j++) {
+        if (array[i] === array[j]) {
+          array.splice(j);
+        }
+      }
+    }
+  }
 
-  // const dataForm = () => {
-  //   let dataForm = (
-  //     dataFormShow ?
-  //       <DataSetsForm />
-  //       : "");
-  //   return dataForm;
-  // }
-
-  // const buttonBuddy = () => {
-  //   let button = (
-  //     buttonShow ?
-  //       <Button variant="primary" type="submit" onClick={handleSubmit}>
-  //         Search
-  //     </Button>
-  //       : "");
-  //   return button;
-  // }
+  const addDescriptions = (errorArray) => {
+    let descriptions = []
+    for (const error of errorArray) {
+      for (const errorObject of dataSets) {
+        if (error === errorObject.id) {
+          const describedError = `${error}: ${errorObject.name}`
+          descriptions.push(describedError);
+        }
+      }
+    }
+    return descriptions;
+  }
 
   useEffect(() => {
-    console.log(errors)
-    errorMaker(errors)
-  }, [errors]);
+    if (chart) {
+      setShowErrors(true);
+      errorMaker(errors)
+    }
+  }, [chart]);
 
-  // useEffect(() => {
-  //   setErrorsList(errors)
-  // }, [errors]);
+  useEffect(() => {
+    if (restart) {
+      setShowErrors(false);
+    }
+  }, [restart]);
 
   return (
-    <ListGroup variant="flush">
-      <p>the following data sets returned errors from the NOAA database:</p>
-      {errorsList}
-    </ListGroup>
+    (showErrors ?
+      <Container>
+        <Row>
+          <Col>
+            <ListGroup variant="flush">
+              <h5><b>The following data sets returned errors from the NOAA database:</b></h5>
+              {errorsList}
+            </ListGroup>
+          </Col>
+          <Col>
+            <ErrorModal />
+          </Col>
+        </Row>
+      </Container>
+      : "")
   );
 }
 

@@ -21,9 +21,7 @@ function ChartSection() {
   // const [charts, setCharts] = useState([]);
 
   const chartSectionMaker = (data) => {
-    // console.log(data)
     setChartSection(Object.keys(data).map((set) => {
-      // console.log(data[set]);
       let charts = chartMaker(data[set].data)
       return (
         <Container fluid>
@@ -88,11 +86,15 @@ function ChartSection() {
   return (
     <Container fluid>
       {buttonBuddy()}
-      <ErrorList />
       <Row>
         <Col>
           {chartSection}
         </Col>
+      </Row>
+      <br />
+      <br />
+      <Row>
+        <ErrorList />
       </Row>
     </Container>
   )

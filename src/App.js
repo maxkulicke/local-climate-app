@@ -25,7 +25,8 @@ function App() {
       <Container fluid>
       <LoadingModal />
         <Row>
-          <Col>Welcome to Max's Climate Data App
+          <Col>
+          <h1>Welcome to Max's Climate Data App</h1>
           <br />
           To Do:
           <br />
@@ -33,7 +34,7 @@ function App() {
           <br />
           more than 5 datasets
           <br />
-          error display after call
+          description / units of measurement for graph header
           </Col>
         </Row>
       </Container>
@@ -42,9 +43,6 @@ function App() {
           <Col>
             <SearchInputForm />
           </Col>
-          {/* <Col>
-            <DataSetsForm />
-          </Col> */}
         </Row>
       </Container>
       <ChartSection />
