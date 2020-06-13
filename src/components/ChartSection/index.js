@@ -9,12 +9,14 @@ import {
   Col
 } from "react-bootstrap";
 import Chart from "../Chart"
-import { CHART } from "../../utils/actions"
+import { CHART, NEW_SEARCH } from "../../utils/actions"
 
 function ChartSection() {
   const [state, dispatch] = useStoreContext();
-  let { chart, data } = state;
+  let { chart, data, restart } = state;
   const [chartSection, setChartSection] = useState([]);
+  const [buttonShow, setButtonShow] = useState(false);
+
   // const [charts, setCharts] = useState([]);
 
   const chartSectionMaker = (data) => {
@@ -46,17 +48,45 @@ function ChartSection() {
     return charts;
   }
 
+  const buttonBuddy = () => {
+    let button = (
+      buttonShow ?
+        <Button variant="primary" type="submit" onClick={handleClick}>
+          Make another search
+      </Button>
+        : "");
+    return button;
+  }
+
+  const handleClick = () => {
+    dispatch({
+      type: NEW_SEARCH,
+    });
+  }
+
   useEffect(() => {
     if (chart) {
       chartSectionMaker(data);
+      setButtonShow(true);
+    } else {
+      // chartSectionMaker([]);
+      // setButtonShow(false);
     }
     dispatch({
       type: CHART,
     });
   }, [chart]);
 
+  useEffect(() => {
+    if (restart) {
+      chartSectionMaker([]);
+      setButtonShow(false);
+    }
+  }, [restart]);
+
   return (
     <Container fluid>
+      {buttonBuddy()}
       <Row>
         <Col>
           {chartSection}

@@ -13,7 +13,7 @@ import {
 
 function SearchInputForm() {
   const [state, dispatch] = useStoreContext();
-  let { chart } = state;
+  let { chart, restart } = state;
   const [formObject, setFormObject] = useState({})
   const [stateList, setStateList] = useState(Object.keys(FIPS))
   const [countyShow, setCountyShow] = useState(false);
@@ -125,6 +125,16 @@ function SearchInputForm() {
       setSearchShow(false);
     }
   }, [chart]);
+
+  useEffect(() => {
+    if (restart) {
+      setSearchShow(true);
+      setCountyShow(false);
+      setRangeShow(false);
+      setButtonShow(false);
+      setDataFormShow(false);
+    }
+  }, [restart]);
 
   return (
     (searchShow ?

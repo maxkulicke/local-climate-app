@@ -5,4 +5,5 @@ export const NEW_DATA = "NEW_DATA";
 export const PROCESSED_DATA = "PROCESSED_DATA"; 
 export const CHART = "CHART"; 
 export const ERROR = "ERROR";
+export const NEW_SEARCH = "NEW_SEARCH";
 
