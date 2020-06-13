@@ -9,6 +9,7 @@ import {
   Col
 } from "react-bootstrap";
 import Chart from "../Chart"
+import ErrorList from "../ErrorList"
 import { CHART, NEW_SEARCH } from "../../utils/actions"
 
 function ChartSection() {
@@ -87,6 +88,7 @@ function ChartSection() {
   return (
     <Container fluid>
       {buttonBuddy()}
+      <ErrorList />
       <Row>
         <Col>
           {chartSection}

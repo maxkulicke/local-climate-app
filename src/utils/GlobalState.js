@@ -93,25 +93,27 @@ const reducer = (state, action) => {
 
     case ERROR:
       let { errors } = state;
+      console.log(errors)
       errors.push(action.error)
+      console.log(errors)
       return {
         ...state,
         errors: errors,
       }
 
-      case NEW_SEARCH:
-        return {
-          ...state,
-          restart: true,
-          query: false,
-          loading: false,
-          process: false,
-          chart: false,
-          fips: "",
-          range: "",
-          data: {},
-          errors: []
-        }
+    case NEW_SEARCH:
+      return {
+        ...state,
+        restart: true,
+        query: false,
+        loading: false,
+        process: false,
+        chart: false,
+        fips: "",
+        range: "",
+        data: {},
+        errors: []
+      }
 
     default:
       return state;
