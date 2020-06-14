@@ -18,7 +18,6 @@ function ChartSection() {
   const [chartSection, setChartSection] = useState([]);
   const [buttonShow, setButtonShow] = useState(false);
 
-  // const [charts, setCharts] = useState([]);
 
   const chartSectionMaker = (data) => {
     setChartSection(Object.keys(data).map((set) => {
@@ -67,9 +66,6 @@ function ChartSection() {
     if (chart) {
       chartSectionMaker(data);
       setButtonShow(true);
-    } else {
-      // chartSectionMaker([]);
-      // setButtonShow(false);
     }
     dispatch({
       type: CHART,

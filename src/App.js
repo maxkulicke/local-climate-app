@@ -35,6 +35,8 @@ function App() {
           more than 5 datasets
           <br />
           description / units of measurement for graph header
+          <br />
+          <br />
           </Col>
         </Row>
       </Container>
