@@ -35,6 +35,8 @@ const initialState = {
       sets: ["HSNW", "EMXP", "EMSN", "WSFM"]
     },
   },
+  stateOfUnion: "",
+  county: "",
   fips: "",
   range: "",
   data: {},
@@ -57,11 +59,14 @@ const reducer = (state, action) => {
       }
 
     case FORM_SUBMIT:
-      let { fips, range } = action;
+      let { fips, range, county, stateOfUnion } = action;
       return {
         ...state,
         query: true,
         loading: true,
+        restart: false,
+        county: county,
+        stateOfUnion: stateOfUnion,
         fips: fips,
         range: range,
         errors: []

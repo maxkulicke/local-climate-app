@@ -26,11 +26,13 @@ function SearchInputForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     let { state, county, range } = formObject
-    county = county.replace(/ /g, "_");
-    state = state.replace(/ /g, "_");
+    // county = county.replace(/ /g, "_");
+    // state = state.replace(/ /g, "_");
     let fips = FIPS[state][county];
     dispatch({
       type: FORM_SUBMIT,
+      stateOfUnion: state,
+      county: county,
       fips: fips,
       range: range
     });

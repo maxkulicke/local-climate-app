@@ -30,11 +30,17 @@ function App() {
           <br />
           To Do:
           <br />
+          show location above graphing
+          <br />
           different graph
           <br />
           more than 5 datasets
           <br />
           description / units of measurement for graph header
+          <br />
+          describe data groups better 
+          <br />
+          about section
           <br />
           <br />
           </Col>

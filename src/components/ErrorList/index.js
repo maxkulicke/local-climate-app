@@ -70,7 +70,7 @@ function SearchInputForm() {
   }, [restart]);
 
   return (
-    (showErrors ?
+    (showErrors && errorsList.length !== 0 ?
       <Container>
         <Row>
           <Col>

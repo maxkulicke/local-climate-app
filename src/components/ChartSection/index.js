@@ -14,7 +14,7 @@ import { CHART, NEW_SEARCH } from "../../utils/actions"
 
 function ChartSection() {
   const [state, dispatch] = useStoreContext();
-  let { chart, data, restart } = state;
+  let { chart, data, restart, stateOfUnion, county } = state;
   const [chartSection, setChartSection] = useState([]);
   const [buttonShow, setButtonShow] = useState(false);
 
@@ -56,6 +56,17 @@ function ChartSection() {
     return button;
   }
 
+  const locationBuddy = () => {
+    let location = (
+      buttonShow ?
+        <>
+          <br />
+          <h3>Data for {county}, {stateOfUnion}:</h3>
+        </>
+        : "");
+    return location;
+  }
+
   const handleClick = () => {
     dispatch({
       type: NEW_SEARCH,
@@ -82,6 +93,13 @@ function ChartSection() {
   return (
     <Container fluid>
       {buttonBuddy()}
+      <br />
+      <br />
+      <Row>
+        <Col>
+          {locationBuddy()}
+        </Col>
+      </Row>
       <Row>
         <Col>
           {chartSection}
