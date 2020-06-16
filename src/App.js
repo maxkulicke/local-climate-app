@@ -15,7 +15,8 @@ import DataSetsForm from "./components/DataSetsForm";
 import NOAACaller from "./components/NOAACaller";
 import ChartSection from "./components/ChartSection";
 import DataOrganizer from "./components/DataOrganizer";
-import LoadingModal from "./components/LoadingModal"
+import LoadingModal from "./components/LoadingModal";
+import AboutModal from "./components/AboutModal";
 
 function App() {
   return (
@@ -23,14 +24,14 @@ function App() {
       <NOAACaller />
       <DataOrganizer />
       <Container fluid>
-      <LoadingModal />
-        <Row>
+        <LoadingModal />
+        <Row >
           <Col>
-          <h1>Welcome to Max's Climate Data App</h1>
+            <h3>To Do:</h3>
+            <br />
+          styling
           <br />
-          To Do:
-          <br />
-          show location above graphing
+          deploy
           <br />
           different graph
           <br />
@@ -38,19 +39,23 @@ function App() {
           <br />
           description / units of measurement for graph header
           <br />
-          describe data groups better 
-          <br />
-          about section
-          <br />
-          <br />
+            <br />
           </Col>
+          <Col md={8}>
+            <h1>Welcome to Max's Climate Data App</h1>
+            <br />
+            <AboutModal />
+          </Col>
+          <Col />
         </Row>
       </Container>
       <Container fluid>
         <Row>
-          <Col>
+          <Col />
+          <Col md={10}>
             <SearchInputForm />
           </Col>
+          <Col />
         </Row>
       </Container>
       <ChartSection />

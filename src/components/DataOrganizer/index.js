@@ -11,6 +11,7 @@ function DataOrganizer() {
   const { process, data } = state;
 
   const organize = () => {
+    console.log(data)
     let processedDataObject = {}
     for (const set of data) {
       let {name} = set;
