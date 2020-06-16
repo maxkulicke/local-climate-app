@@ -13,7 +13,7 @@ import {
 
 function SearchInputForm() {
   const [state, dispatch] = useStoreContext();
-  let { chart } = state;
+  let { chart, restart } = state;
   const [formObject, setFormObject] = useState({})
   const [stateList, setStateList] = useState(Object.keys(FIPS))
   const [countyShow, setCountyShow] = useState(false);
@@ -26,11 +26,13 @@ function SearchInputForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     let { state, county, range } = formObject
-    county = county.replace(/ /g, "_");
-    state = state.replace(/ /g, "_");
-    let fips = FIPS[state][county];
+    let noSpaceCounty = county.replace(/ /g, "_");
+    let noSpaceState = state.replace(/ /g, "_");
+    let fips = FIPS[noSpaceState][noSpaceCounty];
     dispatch({
       type: FORM_SUBMIT,
+      stateOfUnion: state,
+      county: county,
       fips: fips,
       range: range
     });
@@ -126,12 +128,22 @@ function SearchInputForm() {
     }
   }, [chart]);
 
+  useEffect(() => {
+    if (restart) {
+      setSearchShow(true);
+      setCountyShow(false);
+      setRangeShow(false);
+      setButtonShow(false);
+      setDataFormShow(false);
+    }
+  }, [restart]);
+
   return (
     (searchShow ?
       <div>
         <Form>
           <Form.Group controlId="zipForm">
-            <Form.Label>Please select a state to begin</Form.Label>
+            <Form.Label><h5>Please select a state to begin</h5></Form.Label>
             <Form.Control as="select" placeholder="state" name="state" onChange={handleInputChange}>
               <option>state...</option>
               {optionMaker(stateList)}

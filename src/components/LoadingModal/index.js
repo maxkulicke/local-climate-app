@@ -11,20 +11,20 @@ function LoadingModal() {
 
   const [show, setShow] = useState(false);
 
-  const closeModal = () => setShow(false);
-  const showModal = () => setShow(true);
+  const closeLoadingModal = () => setShow(false);
+  const showLoadingModal = () => setShow(true);
 
   useEffect(() => {
     if (loading) {
-      showModal();
+      showLoadingModal();
    } else {
-     closeModal();
+     closeLoadingModal();
    }
   }, [loading]);
 
   return (
     <>
-      <Modal show={show} onHide={closeModal}>
+      <Modal show={show} onHide={closeLoadingModal}>
         <Modal.Header closeButton>
           <Modal.Title>Loading</Modal.Title>
         </Modal.Header>

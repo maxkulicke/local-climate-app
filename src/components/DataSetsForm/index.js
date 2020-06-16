@@ -26,6 +26,29 @@ function DataSetsForm() {
     extreme: false,
   })
 
+  const descriptions = [
+    {
+      id: "temperature",
+      name: "Temperature",
+      description: "information about the temperature ranges & conditions"
+    },
+    {
+      id: "precipitation",
+      name: "Precipitation",
+      description: "information about precipitation trends, including rainfall & snowfall"
+    },
+    {
+      id: "average",
+      name: "Average ",
+      description: "information about average weather conditions"
+    },
+    {
+      id: "extreme",
+      name: "Extreme",
+      description: "information about extreme weather conditions & events"
+    }
+  ]
+
   const refs = [];
   const temperatureRef = useRef(null);
   const precipitationRef = useRef(null);
@@ -53,12 +76,15 @@ function DataSetsForm() {
 
   const makeCheckboxes = () => {
     let checkboxes = Object.keys(sets).map((set, index) => {
+      // console.log(set)
+      let descriptionString =
+        `${descriptions[index].name}: ${descriptions[index].description}`;
       return (
         <Form.Group controlId={set}>
           <Form.Check
             type="checkbox"
             ref={refs[index]}
-            label={set}
+            label={descriptionString}
             onChange={handleChange}
           />
         </Form.Group>

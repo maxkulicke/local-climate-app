@@ -6,15 +6,17 @@ import {
   NEW_DATA,
   PROCESSED_DATA,
   CHART,
-  SETS_CHANGE
+  SETS_CHANGE,
+  NEW_SEARCH,
 } from "./actions";
 
 export const StoreContext = createContext();
 const initialState = {
   query: false,
-  loading: true,
+  loading: false,
   process: false,
   chart: false,
+  restart: false,
   dataSets: {
     temperature: {
       selected: false,
@@ -33,7 +35,9 @@ const initialState = {
       sets: ["HSNW", "EMXP", "EMSN", "WSFM"]
     },
   },
-  zip: "",
+  stateOfUnion: "",
+  county: "",
+  fips: "",
   range: "",
   data: {},
   errors: []
@@ -55,11 +59,14 @@ const reducer = (state, action) => {
       }
 
     case FORM_SUBMIT:
-      let { fips, range } = action;
+      let { fips, range, county, stateOfUnion } = action;
       return {
         ...state,
         query: true,
         loading: true,
+        restart: false,
+        county: county,
+        stateOfUnion: stateOfUnion,
         fips: fips,
         range: range,
         errors: []
@@ -95,6 +102,20 @@ const reducer = (state, action) => {
       return {
         ...state,
         errors: errors,
+      }
+
+    case NEW_SEARCH:
+      return {
+        ...state,
+        restart: true,
+        query: false,
+        loading: false,
+        process: false,
+        chart: false,
+        fips: "",
+        range: "",
+        data: {},
+        errors: []
       }
 
     default:

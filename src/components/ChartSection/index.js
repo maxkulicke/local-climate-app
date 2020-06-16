@@ -9,18 +9,18 @@ import {
   Col
 } from "react-bootstrap";
 import Chart from "../Chart"
-import { CHART } from "../../utils/actions"
+import ErrorList from "../ErrorList"
+import { CHART, NEW_SEARCH } from "../../utils/actions"
 
 function ChartSection() {
   const [state, dispatch] = useStoreContext();
-  let { chart, data } = state;
+  let { chart, data, restart, stateOfUnion, county } = state;
   const [chartSection, setChartSection] = useState([]);
-  // const [charts, setCharts] = useState([]);
+  const [buttonShow, setButtonShow] = useState(false);
+
 
   const chartSectionMaker = (data) => {
-    // console.log(data)
     setChartSection(Object.keys(data).map((set) => {
-      // console.log(data[set]);
       let charts = chartMaker(data[set].data)
       return (
         <Container fluid>
@@ -46,21 +46,69 @@ function ChartSection() {
     return charts;
   }
 
+  const buttonBuddy = () => {
+    let button = (
+      buttonShow ?
+        <Button variant="primary" type="submit" onClick={handleClick}>
+          Make another search
+      </Button>
+        : "");
+    return button;
+  }
+
+  const locationBuddy = () => {
+    let location = (
+      buttonShow ?
+        <>
+          <br />
+          <h3>Data for {county}, {stateOfUnion}:</h3>
+        </>
+        : "");
+    return location;
+  }
+
+  const handleClick = () => {
+    dispatch({
+      type: NEW_SEARCH,
+    });
+  }
+
   useEffect(() => {
     if (chart) {
       chartSectionMaker(data);
+      setButtonShow(true);
     }
     dispatch({
       type: CHART,
     });
   }, [chart]);
 
+  useEffect(() => {
+    if (restart) {
+      chartSectionMaker([]);
+      setButtonShow(false);
+    }
+  }, [restart]);
+
   return (
     <Container fluid>
+      {buttonBuddy()}
+      <br />
+      <br />
+      <Row>
+        <Col>
+          {locationBuddy()}
+        </Col>
+      </Row>
       <Row>
         <Col>
           {chartSection}
         </Col>
+      </Row>
+      <br />
+      <br />
+      <Row>
+        <ErrorList />
       </Row>
     </Container>
   )

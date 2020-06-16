@@ -11,6 +11,7 @@ function DataOrganizer() {
   const { process, data } = state;
 
   const organize = () => {
+    console.log(data)
     let processedDataObject = {}
     for (const set of data) {
       let {name} = set;
@@ -31,7 +32,6 @@ function DataOrganizer() {
     let dataObject = Object.keys(data).map((set) => {
       if (typeof data[set] === "string") {
         let error = data[set].slice(0,4);
-        // console.log(error);
         dispatch({
           type: ERROR,
           error: error,

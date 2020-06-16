@@ -1,6 +1,6 @@
 import axios from "axios";
 import dataSets from "./dataSets"
-const moment = require('moment'); // require
+const moment = require('moment'); 
 moment().format();
 
 const caller = async (queryURL) => {
@@ -20,8 +20,6 @@ const caller = async (queryURL) => {
       console.log(error);
       return "ERROR"
     })
-
-  // console.log(data);
   return data;
 }
 
