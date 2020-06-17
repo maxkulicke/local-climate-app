@@ -12,7 +12,6 @@ function NOAACaller() {
 
   useEffect(() => {
     async function fetchData(fips) {
-      console.log(dataSets);
       let data = await api.getData(dataSets, fips, range);
       dispatch({
         type: NEW_DATA,

@@ -18,6 +18,7 @@ import DataOrganizer from "./components/DataOrganizer";
 import LoadingModal from "./components/LoadingModal";
 import AboutModal from "./components/AboutModal";
 
+console.log(process.env.REACT_APP_API_KEY);
 function App() {
   return (
     <StoreProvider>
