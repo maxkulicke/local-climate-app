@@ -1,24 +1,25 @@
 import axios from "axios";
 import dataSets from "./dataSets"
-const moment = require('moment'); 
+const moment = require('moment');
 moment().format();
 
-const caller = async (queryURL) => {
-
+const caller = async (queryURL, counter) => {
+  console.log(process.env.REACT_APP_API_KEY);
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   let config = {
     method: "get",
     url: proxyurl + queryURL,
     headers: {
-      // "token" : process.env.REACT_APP_API_KEY
-      // you need your token hardcoded here
-      token: "OBzsTvSdeIEAZDdTInysIDJSVQZdhKtx"
+      "token" : process.env.REACT_APP_API_KEY
     },
   };
   let data = await axios(config)
     .catch((error) => {
-      console.log(error);
-      return "ERROR"
+      let code = error.response.status
+      return (
+        "ERROR"
+        // code === 429 && counter < 10 ? caller(queryURL, counter + 1) : "ERROR"
+      )
     })
   return data;
 }
@@ -54,7 +55,7 @@ export default {
           let queryURL =
             "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
             "&locationid=FIPS:" + fips + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
-          let setData = await caller(queryURL);
+          let setData = await caller(queryURL, 0);
           dataCollection.push((setData !== "ERROR" ? setData : `${setId}: ${setData}`));
         }
         let dataSet = {
