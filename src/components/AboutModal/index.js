@@ -15,14 +15,6 @@ function AboutModal() {
   const closeAboutModal = () => setShow(false);
   const showAboutModal = () => setShow(true);
 
-  // useEffect(() => {
-  //   if (loading) {
-  //     showAboutModal();
-  //   } else {
-  //     closeAboutModal();
-  //   }
-  // }, [loading]);
-
   return (
     <>
       <Button variant="info" onClick={showAboutModal}>
