@@ -33,14 +33,6 @@ function AboutModal() {
           <Modal.Title>About this app:</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h5>About</h5>
-          This app is designed to let a user visualize long term weather patterns and trends for
-          any county in the United States. Given the onset of local manifestations of global 
-          climate change, and the abundance of public data available through NOAA, the National
-          Oceanic and Atmospheric Administration, this app helps a user process and understand
-          that data for whatever purpose they may want.
-          <br />
-          <br />
           <h5>Methodology</h5>
           The county is the most micro area for which there is consistently available data across
           the country. I would have liked to do it at the zip code level, but data is too intermittent.

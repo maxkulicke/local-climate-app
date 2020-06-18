@@ -22,12 +22,6 @@ import AboutModal from "./components/AboutModal";
 
 // styling
 
-// deploy
-
-// different graph
-
-// different graph
-
 // description / units of measurement for graph header
 
 console.log(process.env.REACT_APP_API_KEY);

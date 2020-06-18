@@ -2,6 +2,7 @@ import React from 'react';
 import ChartistGraph from 'react-chartist';
 import { useStoreContext } from "../../utils/GlobalState";
 import dataSets from "../../utils/dataSets"
+import "./index.css"
 
 
 class Chart extends React.Component {
