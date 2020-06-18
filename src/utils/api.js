@@ -4,7 +4,7 @@ const moment = require('moment');
 moment().format();
 
 const caller = async (queryURL, counter) => {
-  console.log(process.env.REACT_APP_API_KEY);
+  // console.log(process.env.REACT_APP_API_KEY);
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   let config = {
     method: "get",

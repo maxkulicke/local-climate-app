@@ -1,14 +1,13 @@
 import React from 'react';
 import ChartistGraph from 'react-chartist';
 import { useStoreContext } from "../../utils/GlobalState";
-
+import dataSets from "../../utils/dataSets"
+import "./index.css"
 
 
 class Chart extends React.Component {
 
   render() {
-    // console.log(this.props.name);
-    // console.log(this.props.data);
     let { data } = this.props;
 
     let chartData = {
@@ -20,7 +19,6 @@ class Chart extends React.Component {
       dataSeries.push(data[year]);
     }
     chartData.series.push(dataSeries);
-    // console.log(chartData);
 
     let chartOptions = {
       showArea: true,
@@ -36,13 +34,25 @@ class Chart extends React.Component {
       }
     }
 
+    const findDescription = (id) => {
+      let description = "";
+      for (let i = 0; i < dataSets.length; i++) {
+        if (dataSets[i].id === id) {
+          description = dataSets[i].name;
+          i = dataSets.length;
+        }
+      }
+      return description;
+    }
+
     return (
       <div>
-        {this.props.name}
+        <br />
+        {this.props.name}: {findDescription(this.props.name)}
         <br />
         <br />
         <br />
-        <ChartistGraph data={chartData} options={chartOptions} type={'Line'} />
+        <ChartistGraph data={chartData} options={chartOptions} type={'Line'} className="chart"/>
       </div>
     );
   }

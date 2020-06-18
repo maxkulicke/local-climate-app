@@ -150,6 +150,7 @@ function SearchInputForm() {
             </Form.Control>
           </Form.Group>
           {countyForm()}
+          <br />
           {rangeForm()}
           {dataForm()}
           {buttonBuddy()}

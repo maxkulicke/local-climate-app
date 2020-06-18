@@ -22,6 +22,7 @@ function ChartSection() {
   const chartSectionMaker = (data) => {
     setChartSection(Object.keys(data).map((set) => {
       let charts = chartMaker(data[set].data)
+      set = set.toUpperCase();
       return (
         <Container fluid>
           <h3>{set}</h3>
@@ -62,6 +63,7 @@ function ChartSection() {
         <>
           <br />
           <h3>Data for {county}, {stateOfUnion}:</h3>
+          <br />
         </>
         : "");
     return location;
