@@ -53,8 +53,8 @@ export default {
         let dataCollection = [];
         for (const setId of dataSets[set].sets) {
           let queryURL =
-            "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
-            "&locationid=FIPS:" + fips + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01";
+          "https://www.ncdc.noaa.gov/cdo-web/api/v2/data?datasetid=GSOY&datatypeid=" + setId +
+          "&locationid=FIPS:" + fips + "&startdate=" + start + "-01-01&enddate=" + end + "-01-01"
           let setData = await caller(queryURL, 0);
           dataCollection.push((setData !== "ERROR" ? setData : `${setId}: ${setData}`));
         }

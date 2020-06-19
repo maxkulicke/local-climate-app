@@ -83,21 +83,25 @@ function SearchInputForm() {
       rangeShow ?
         <Form.Group controlId="yearForm">
           <Form.Label>How far back would you like to search?</Form.Label>
-          <Form.Text className="text-muted">
+          {/* <Form.Text className="text-muted">
             The farther back the search, the easier it is to determine long term trends
+          </Form.Text> */}
+          <Form.Text className="text-muted">
+            For reasons I am trying to discover, the NOAA API is only returning data within about
+            a 10 year range...
           </Form.Text>
           <Form.Control as="select" name="range" onChange={handleInputChange} >
             <option>Choose...</option>
-            <option>5 years</option>
+            {/* <option>5 years</option> */}
             <option>10 years</option>
-            <option>15 years</option>
+            {/* <option>15 years</option>
             <option>20 years</option>
             <option>25 years</option>
             <option>30 years</option>
             <option>35 years</option>
             <option>40 years</option>
             <option>45 years</option>
-            <option>50 years</option>
+            <option>50 years</option> */}
           </Form.Control>
         </Form.Group>
         : "");

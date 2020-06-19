@@ -22,6 +22,9 @@ function ChartSection() {
   const chartSectionMaker = (data) => {
     setChartSection(Object.keys(data).map((set) => {
       let charts = chartMaker(data[set].data)
+      if (charts.length === 0) {
+        charts = "Sorry, no data was found for this category"
+      }
       set = set.toUpperCase();
       return (
         <Container fluid>

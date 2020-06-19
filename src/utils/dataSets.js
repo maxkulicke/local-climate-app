@@ -1,87 +1,108 @@
 const dataSets = [
   {
     id: "TAVG",
-    name: "Average temperature."
+    name: "Average temperature.",
+    unit: "Degrees Celsius"
   },
   {
     id: "TMAX",
-    name: "Maximum temperature"
+    name: "Maximum temperature",
+    unit: "Degrees Celsius"
   },
   {
     id: "TMIN",
-    name: "Minimum temperature"
+    name: "Minimum temperature",
+    unit: "Degrees Celsius"
   },
   {
     id: "LTMN",
-    name: "Lowest minimum temperature"
+    name: "Lowest minimum temperature",
+    unit: "Degrees Celsius"
   },
   {
     id: "HTMN",
-    name: "Highest minimum temperature"
+    name: "Highest minimum temperature",
+    unit: "Degrees Celsius"
   },
   {
     id: "LTMX",
-    name: "Lowest maximum temperature"
+    name: "Lowest maximum temperature",
+    unit: "Degrees Celsius"
   },
   {
     id: "HTMX",
-    name: "Highest maximum temperature"
+    name: "Highest maximum temperature",
+    unit: "Degrees Celsius"
   },
   {
     id: "HLY-HIDX-NORMAL",
-    name: "Heat index mean"
+    name: "Heat index mean",
+    unit: "Degrees Celsius"
   },
   {
     id: "HLY-WCHL-NORMAL",
-    name: "Wind chill mean"
+    name: "Wind chill mean",
+    unit: "Degrees Celsius"
   },
   {
     id: "HPCP",
-    name: "Precipitation"
+    name: "Precipitation",
+    unit: "Millimeters"
   },
   {
     id: "PRCP",
-    name: "Precipitation"
+    name: "Precipitation",
+    unit: "Millimeters"
   },
   {
     id: "TPCP",
-    name: "Total precipitation"
+    name: "Total precipitation",
+    unit: "Millimeters"
   },
   {
     id: "TSNW",
-    name: "Total snow fall"
+    name: "Total snow fall",
+    unit: "Millimeters"
   },
   {
     id: "PTA",
-    name: "Storm Total Accumulation(Storm Total Precipitation total (16 levels) with Dual Pol"
+    name: "Storm Total Accumulation(Storm Total Precipitation total (16 levels) with Dual Pol",
+    unit: "Millimeters"
   },
   {
     id: "HSNW",
-    name: "Highest snowfall"
+    name: "Highest snowfall",
+    unit: "Millimeters"
   },
   {
     id: "EMXP",
-    name: "Extreme maximum precipitation for the period."
+    name: "Extreme maximum precipitation for the period.",
+    unit: "Millimeters"
   },
   {
     id: "EMSN",
-    name: "Extreme maximum snowfall for the period."
+    name: "Extreme maximum snowfall for the period.",
+    unit: "Millimeters"
   },
   {
     id: "DWPR",
-    name: "Number of days with non-zero precipitation included in multiday precipitation total"
+    name: "Number of days with non-zero precipitation included in multiday precipitation total",
+    unit: "Days"
   },
   {
     id: "ACSH",
-    name: "Average cloudiness sunrise to sunset from manual observations"
+    name: "Average cloudiness sunrise to sunset from manual observations",
+    unit: "Percent of total"
   },
   {
     id: "AWND",
-    name: "Average wind speed"
+    name: "Average wind speed",
+    unit: "Meters per second"
   },
   {
     id: "WSFM",
-    name: "Fastest mile wind speed"
+    name: "Fastest mile wind speed",    
+    unit: "Meters per second"
   },
 ];
 

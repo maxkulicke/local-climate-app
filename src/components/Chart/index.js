@@ -45,10 +45,21 @@ class Chart extends React.Component {
       return description;
     }
 
+    const findUnits = (id) => {
+      let units = "";
+      for (let i = 0; i < dataSets.length; i++) {
+        if (dataSets[i].id === id) {
+          units = dataSets[i].unit;
+          i = dataSets.length;
+        }
+      }
+      return units;
+    }
+
     return (
       <div>
         <br />
-        {this.props.name}: {findDescription(this.props.name)}
+        {this.props.name}: {findDescription(this.props.name)}, measured in {findUnits(this.props.name)}
         <br />
         <br />
         <br />
