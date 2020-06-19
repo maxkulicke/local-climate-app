@@ -24,7 +24,6 @@ import AboutModal from "./components/AboutModal";
 
 // description / units of measurement for graph header
 
-console.log(process.env.REACT_APP_API_KEY);
 function App() {
   return (
     <StoreProvider>
